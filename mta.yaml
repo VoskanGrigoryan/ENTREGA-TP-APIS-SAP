@@ -1,0 +1,56 @@
+_schema-version: "3.2"
+ID: Ejercicio19
+version: 0.0.1
+modules:
+- name: ejercicio19-approuter
+  type: approuter.nodejs
+  path: ejercicio19-approuter
+  requires:
+  - name: Ejercicio19_html_repo_runtime
+  - name: dest_Ejercicio19
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: Ejercicio19_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: Ejercicio19_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - Ejercicio19-content.zip
+      name: Ejercicio19
+      target-path: resources/
+- name: Ejercicio19
+  type: html5
+  path: Ejercicio19
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: Ejercicio19_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: Ejercicio19_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: dest_Ejercicio19
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install

@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Ejercicio19-Ejercicio19",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/ejercicio19-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/Ejercicio19Ejercicio19/index.html",
+        "--ui5",
+        "{\"version\":\"1.84.9\"}"
+      ],
+      "cwd": "${workspaceFolder}/Ejercicio19",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Ejercicio19/Ejercicio19\"}"
+      },
+      "envFile": "${workspaceFolder}/Ejercicio19/.env1",
+      "preLaunchTask": "Build Ejercicio19"
+    }
+  ]
+}
